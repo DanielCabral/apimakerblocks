@@ -1,6 +1,6 @@
 var express = require('express');
 const ProjectsController=require('./controllers/ProjectsController');
-const UsersController=require('./controllers/UsersControllers');
+const UsersControllers=require('./controllers/UsersControllers');
 
 var router = express.Router();
 router.use(express.json());
@@ -22,7 +22,7 @@ router.get('/project/:id', ProjectsController.get);
 
 //----------------------------------------------------
 //Rotas de usuario 
-router.get('/users', ProjectsController.index);
+router.get('/users', UsersControllers.index);
 
 router.post('/user',ProjectsController.create);
 
