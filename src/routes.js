@@ -24,13 +24,16 @@ router.get('/project/:id', ProjectsController.get);
 //Rotas de usuario 
 router.get('/users', UsersControllers.index);
 
-router.post('/user',ProjectsController.create);
+router.post('/user', UsersControllers.create);
 
-router.put('/user', ProjectsController.update);
+router.put('/user', UsersControllers.update);
 
-router.get('/user/:id', ProjectsController.get);
+//router.patch('/image/:id', multer(multerConfig).single('file'), UsersController.uploadImage);
 
-//router.get('/login/', ProjectsController.auth);
+router.get('/user/:id', UsersControllers.get);
+router.post('/auth', UsersControllers.login)
+router.post('/forgotpassword', UsersControllers.forgotpassword)
+router.post('/resetpassword', UsersControllers.resetpassword)
 
 
 

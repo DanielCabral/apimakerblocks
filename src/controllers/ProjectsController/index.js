@@ -9,25 +9,75 @@ module.exports={
 
         return response.json(ongs);
     },
+
+
+    
+    /**
+ * @api {get} /project/:id Request Project information
+ * @apiName GetProject
+ * @apiGroup Project
+ *
+ * @apiParam {Integer} id Unique ID of project
+ *
+ * @apiSuccess {Integer} id Id of the User.
+ * @apiSuccess {String} name Name of the Project.
+ * @apiSuccess {String} xml  Xml of the User.
+ * @apiSuccess {Integer} user_id  Project user id. .
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": 1,
+ *       "name": "Blink led",
+ *       "xml": "84 99999999",
+ *       "user_id": 11,
+ *     }
+ *
+ * @apiError ProjectNotFound The id of the project was not found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "ProjectNotFound"
+ *     }
+ */
     async get (request,response) {
         const {id}=request.params;
         console.log(id);
-        const ongs=await connection('projects')
+        await connection('projects')
         .where({'id': id})
-        .select(['projects.*']);
-
-       return response.json(ongs);
+        .select(['projects.*'])
+        .then((result) =>{
+            if(result.length > 0){
+                return response.json(result[0]);
+            }else{
+                response.status(404).send({
+                    "error": "ProjectNotFound"
+                  })
+            }
+           
+        })
+        .catch((err) => response.sendStatus(500).send({
+                   "error": "ProjectNotFound"
+                 }));
    },
     async create(request,response){
-        const {name, xml}=request.body;
+        const {name, xml, user_id}=request.body;
         console.log("Enter");
-            // const ong_id=request.headers.authorization;
-            // console.log(ong_id);
             const [id]= await connection('projects').insert({
                 name,
-                xml,                
-            });
-            return response.send(""+id);
+                xml, 
+                user_id,               
+            })
+            .then(result => {                
+                console.log(result)
+                return response.send(result);
+            })
+            .catch(err => {
+                console.log(err)
+                return response.sendStatus(422);
+            })
+            ;            
     },
     async update(request,response){
         const {xml, id}=request.body;

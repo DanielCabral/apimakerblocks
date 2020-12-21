@@ -1,0 +1,7 @@
+{
+    "name": "MakerBlocks",
+    "version": "1.0.0",
+    "description": "Api de acesso as rotas do sistema MakerBlocks",
+    "title": "MakerBlocks API",
+    "url" : "https://apimakerblocks.herokuapp.com"
+  }

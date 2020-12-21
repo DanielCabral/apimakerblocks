@@ -4,6 +4,7 @@ exports.up = function(knex) {
         table.increments('id').primary;
         table.string('name').notNullable();
         table.string('xml').notNullable();
+        table.integer('user_id',11).notNullable().unsigned().references('id').inTable('users');
     });
 };
 
