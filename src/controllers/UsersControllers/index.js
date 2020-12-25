@@ -112,22 +112,24 @@ module.exports={
  */
 
     async update(request,response){
-        const {name, email}=request.body;
+        const {name, phone, email}=request.body;
+        const {id}=request.params;
         console.log(id);
 
             await connection('users').where({'id': id})
             .update({
                 name: name,
+                phone,
                 email: email
             })
             .then(function(numberOfUpdatedRows) {
                 if(numberOfUpdatedRows) {                   
-                    return response.send("Ok ");
+                    return response.send();
                 }
             }).catch(function(err){
-                console.log(err);
-                return response.send("Erro");
-                return;         
+                response.status(404).send({
+                    "error": "UserNotFound"
+                  })        
             });           
     },
 

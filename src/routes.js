@@ -26,7 +26,7 @@ router.get('/users', UsersControllers.index);
 
 router.post('/user', UsersControllers.create);
 
-router.put('/user', UsersControllers.update);
+router.put('/user/:id', UsersControllers.update);
 
 //router.patch('/image/:id', multer(multerConfig).single('file'), UsersController.uploadImage);
 
