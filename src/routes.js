@@ -12,7 +12,7 @@ router.get('/', (req,res) => {
 //Rotas de Projeto
 router.get('/projects', ProjectsController.index);
 
-router.get('/projects/:id', ProjectsController.get);
+router.get('/projects/:id', ProjectsController.getUserProjects);
 
 router.post('/project',ProjectsController.create);
 

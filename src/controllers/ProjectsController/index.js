@@ -9,7 +9,7 @@ module.exports={
 
         return response.json(projects);
     },
-    async get (request,response) {
+    async getUserProjects (request,response) {
         const {id} = request.params;
         const projects=await connection('projects')
         .where({'id': id})
