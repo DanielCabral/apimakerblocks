@@ -4,12 +4,19 @@ const crypto=require('crypto');
 
 module.exports={
     async index (request,response) {
-         const ongs=await connection('projects')
+         const projects=await connection('projects')
          .select(['projects.*']);
 
-        return response.json(ongs);
+        return response.json(projects);
     },
+    async get (request,response) {
+        const {id} = request.params;
+        const projects=await connection('projects')
+        .where({'id': id})
+        .select(['projects.*']);
 
+       return response.json(projects);
+   },
 
     
     /**

@@ -12,6 +12,8 @@ router.get('/', (req,res) => {
 //Rotas de Projeto
 router.get('/projects', ProjectsController.index);
 
+router.get('/projects/:id', ProjectsController.get);
+
 router.post('/project',ProjectsController.create);
 
 router.put('/project', ProjectsController.update);
@@ -25,6 +27,7 @@ router.get('/project/:id', ProjectsController.get);
 router.get('/users', UsersControllers.index);
 
 router.post('/user', UsersControllers.create);
+
 
 router.put('/user/:id', UsersControllers.update);
 
