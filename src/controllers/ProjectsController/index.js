@@ -18,6 +18,7 @@ module.exports={
        return response.json(projects);
    },
    
+   //Contagem de projetos de usuario
    async getCountUserProjects (request,response) {
     const {id} = request.params;
     const count = await connection('projects')
