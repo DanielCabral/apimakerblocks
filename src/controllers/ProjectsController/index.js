@@ -17,7 +17,15 @@ module.exports={
 
        return response.json(projects);
    },
+   
+   async getCountUserProjects (request,response) {
+    const {id} = request.params;
+    const count = await connection('projects')
+    .where({'user_id': id})
+    .count();
 
+   return response.send(count);
+},
     
     /**
  * @api {get} /project/:id Request Project information

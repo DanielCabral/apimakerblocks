@@ -14,6 +14,8 @@ router.get('/projects', ProjectsController.index);
 
 router.get('/projects/:id', ProjectsController.getUserProjects);
 
+router.get('/countprojects/:id', ProjectsController.getCountUserProjects);
+
 router.post('/project',ProjectsController.create);
 
 router.put('/project', ProjectsController.update);
@@ -21,6 +23,8 @@ router.put('/project', ProjectsController.update);
 router.delete('/project/:id', ProjectsController.delete);
 
 router.get('/project/:id', ProjectsController.get);
+
+
 
 //----------------------------------------------------
 //Rotas de usuario 
