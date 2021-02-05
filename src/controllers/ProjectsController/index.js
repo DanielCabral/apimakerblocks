@@ -96,10 +96,10 @@ module.exports={
             ;            
     },
     async update(request,response){
-        const {xml, id}=request.body;
+        const {xml, id, project}=request.body;
         console.log(id);
 
-            await connection('projects').where({'id': id})
+            await connection('projects').where({'id': id, 'project': project})
             .update({
                 xml: xml
             })
