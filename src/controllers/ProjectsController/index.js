@@ -97,9 +97,9 @@ module.exports={
     },
     async update(request,response){
         const {xml, id, project}=request.body;
-        console.log(id);
+        console.log(id, project);
 
-            await connection('projects').where({'id': id, 'project': project})
+            await connection('projects').where({'user_id': id, 'id': project})
             .update({
                 xml: xml
             })
